@@ -12,9 +12,15 @@ stages
 }
   }}
 
+   stage ('Compile')
+  {steps { withMaven(globalMavenSettingsConfig: '', jdk: 'JAVA_HOME', maven: 'MVN_HOME', mavenSettingsConfig: '', traceability: true) {
+    sh "mvn Compile"
+}
+  }}
+
   stage ('Package')
   {steps { withMaven(globalMavenSettingsConfig: '', jdk: 'JAVA_HOME', maven: 'MVN_HOME', mavenSettingsConfig: '', traceability: true) {
-    sh "mvn Package"
+    sh "mvn  clean Package"
 }
   }}
 
